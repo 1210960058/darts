@@ -1,0 +1,57 @@
+<!DOCTYPE html><!--HTML5で書く-->
+<html lang="ja"><!--日本語で書く-->
+<html>
+	<head>
+	       <meta  charset="UTF-8">  
+
+               <style type="text/css">
+               #test{
+                width: 400px;
+                height: 400px;
+                border: solid 1px black;
+                background-color: red;
+               }
+               </style>
+	</head>
+	<body>
+<img src="darts3.png" usemap="#darts">
+<map name="darts">
+<!--↓真ん中のゾーン、今回はカウントアップなのでどちらも50＝一個-->
+<area class="darts 50" shape="circle" coords="320,320,73" alt="50"> 
+<!--↓白と黒の当倍ゾーン--> 
+<area class="darts 6" shape="poly" coords="583,276,583,360,320,320" alt="6" >
+<area class="darts 13" shape="poly" coords="553,198,583,276,320,320" alt="13" >
+<area class="darts 4" shape="poly" coords="506,132,553,198,320,320" alt="4" >
+<area class="darts 18" shape="poly" coords="440,82,506,132,320,320" alt="18" >
+<area class="darts 1" shape="poly" coords="360,54,440,82,320,320" alt="1" >
+<area class="darts 20" shape="poly" coords="277,54,360,54,320,320" alt="20">
+<!--↓外周の0点-->  
+<area class="darts 0" shape="circle" coords="320,320,320" alt="0"> 
+    
+
+
+
+
+</map>
+
+               <script type="text/javascript">
+               var darts =document.getElementsByClassName("darts");
+               for(var i=0; i<darts.length;i++){
+                darts[i].addEventListener('mousedown',function(){
+                  alert(this.classList[1]);
+
+                },false);
+               }
+               </script> 
+	</body>
+
+
+
+
+
+
+
+
+
+
+</html>
