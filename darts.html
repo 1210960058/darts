@@ -5,19 +5,42 @@
 	       <meta  charset="UTF-8">  
 
                <style type="text/css">
-               #test{
-                width: 400px;
-                height: 400px;
-                border: solid 1px black;
-                background-color: red;
-               }
+#result{
+  position:fixed;
+}
                </style>
 	</head>
 	<body>
+<div id="result"></div>
 <img src="darts3.png" usemap="#darts">
 <map name="darts">
 <!--↓真ん中のゾーン、今回はカウントアップなのでどちらも50＝一個-->
-<area class="darts 50" shape="circle" coords="319,319,73" alt="50"> 
+<area class="darts 50" shape="circle" coords="319,319,73" alt="50">
+
+
+<!--↓赤と青の3倍ゾーン-->
+<area class="darts 15" shape="poly" coords="254,191,238,160,265,149,290,143,296,177,276,182" alt="15">
+<area class="darts 36" shape="poly" coords="218,217,193,192,213,175,238,160,254,191,237,201" alt="36">
+<area class="darts 27" shape="poly" coords="191,253,160,238,174,215,193,192,218,217,203,233" alt="27">
+<area class="darts 42" shape="poly" coords="177,296,144,291,150,263,160,238,191,253,183,272" alt="42">
+<area class="darts 33" shape="poly" coords="177,341,143,346,142,317,144,291,177,296,176,316" alt="33">
+<area class="darts 24" shape="poly" coords="191,383,161,399,149,371,143,346,177,341,182,362" alt="24">
+<area class="darts 48" shape="poly" coords="217,420,193,444,175,423,161,399,191,383,202,402" alt="48">
+<area class="darts 21" shape="poly" coords="254,446,238,477,213,462,193,444,217,420,234,434" alt="21">
+<area class="darts 57" shape="poly" coords="296,461,291,494,262,487,238,477,254,446,272,454" alt="57">
+<area class="darts 9" shape="poly" coords="341,460,346,494,316,496,291,494,296,461,315,461" alt="9">
+<area class="darts 51" shape="poly" coords="384,446,400,476,373,487,346,494,341,460,364,455" alt="51">
+<area class="darts 6" shape="poly" coords="420,419,445,444,423,462,400,476,384,446,402,434" alt="6">
+<area class="darts 45" shape="poly" coords="446,383,477,399,464,421,445,444,420,419,434,404" alt="45">
+<area class="darts 30" shape="poly" coords="460,340,495,345,489,371,477,399,446,383,456,361" alt="30">
+<area class="darts 18" shape="poly" coords="460,295,494,290,496,316,495,345,460,340,460,318" alt="18">
+<area class="darts 39" shape="poly" coords="445,252,476,237,487,262,494,290,460,295,455,275" alt="39">
+<area class="darts 12" shape="poly" coords="419,217,444,193,463,215,476,237,445,252,436,235" alt="12">
+<area class="darts 54" shape="poly" coords="384,190,399,160,422,174,444,193,419,217,402,203" alt="54">
+<area class="darts 3" shape="poly" coords="341,177,345,144,372,150,399,160,384,190,362,181" alt="3">
+<area class="darts 60" shape="poly" coords="296,177,290,143,315,142,345,144,341,177,317,177" alt="60">
+
+
 <!--↓赤と青の2倍ゾーン-->
 <area class="darts 10" shape="poly" coords="206,97,190,65,235,47,274,38,279,73,244,81" alt="10">
 <area class="darts 24" shape="poly" coords="143,142,118,117,152,88,190,65,206,97,174,116" alt="24">
@@ -71,10 +94,39 @@
 </map>
 
                <script type="text/javascript">
+               var sum=0;//合計点
+               var c=0;//何回投げたか
+               var aaa = new Array();
                var darts =document.getElementsByClassName("darts");
+               var result =document.getElementById("result");  
+       result.innerHTML=
+"1 ==>"+aaa[0]+"<br>"+
+"2 ==>"+aaa[1]+"<br>"+
+"3 ==>"+aaa[2]+"<br>"+
+"Total ==>"+sum+"";
                for(var i=0; i<darts.length;i++){
                 darts[i].addEventListener('mousedown',function(){
-                  alert(this.classList[1]);
+                  //alert(this.classList[1]);
+
+sum=sum+Number(this.classList[1]);
+aaa[c]=Number(this.classList[1]);
+//alert(sum);
+c++;
+
+result.innerHTML=
+"1 ==>"+aaa[0]+"<br>"+
+"2 ==>"+aaa[1]+"<br>"+
+"3 ==>"+aaa[2]+"<br>"+
+"Total ==>"+sum+"";
+
+
+                              if(c==3){
+                                delete aaa[0];
+                                delete aaa[1];
+                                delete aaa[2];
+                                c=0;
+                                sum=0;
+                              }
 
                 },false);
                }
